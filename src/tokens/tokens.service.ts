@@ -1,4 +1,4 @@
-import { IToken, ITokenPayload } from './tokens.interface';
+import { IToken, ITokenDto, ITokenPayload } from './tokens.interface';
 import { Repository } from 'typeorm';
 import { injectable,inject } from "inversify";
 import { TYPES } from '../types';
@@ -33,14 +33,13 @@ export class TokenService {
         return tokens;
     }
 
-    async saveTokens(data:{user_id:number,refresh_token:string}):Promise<any>{
+    async saveTokens(data:ITokenDto):Promise<any>{
         // let findToken:TokenEntity|null = await this.repo.findToken(data.refresh_token);
         // return findToken;
         // if(findToken){
         //     let res = await this.tokenRepo.update({user_id:data.user_id},{refresh_token:data.refresh_token})
         //     return findToken;
         // }
-        console.log('data22',data);
         
         let saveToken = this.repo.save(data);
         return saveToken;

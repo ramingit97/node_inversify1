@@ -1,6 +1,7 @@
 import { Repository, getRepository } from "typeorm";
 import { inject, injectable } from "inversify";
 import { TokenEntity } from "./tokens.entity";
+import { ITokenDto } from "./tokens.interface";
 
 
 @injectable()
@@ -12,10 +13,8 @@ export class TokenRepository{
         // return allUsers;
     }
 
-    async save(token:{user_id:number,refresh_token:string}){
+    async save(token:ITokenDto){
         let tokenEntity = new TokenEntity()
-        tokenEntity.user_id = token.user_id;
-        tokenEntity.refresh_token = token.refresh_token;
         Object.assign(tokenEntity,token);
         return await TokenEntity.save(tokenEntity) ;
     }

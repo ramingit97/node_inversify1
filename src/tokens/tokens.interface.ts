@@ -7,3 +7,8 @@ export interface IToken{
 export interface ITokenPayload{
     [key:string]:string| number;
 }
+
+export interface ITokenDto{
+    user_id:number,
+    refresh_token:string
+}
